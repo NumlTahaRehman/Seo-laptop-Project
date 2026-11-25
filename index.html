@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LaptopFinder PK 2026 — Compare Laptop Prices & Specs in Pakistan</title>
-<meta name="description" content="Compare verified PKR laptop prices, RAM, SSD, and processors for students, office work, and gaming in Pakistan.">
+<title>LaptopFinder PK 2026 — Compare New & Second Hand Laptop Prices in Pakistan</title>
+<meta name="description" content="Compare verified PKR prices for new and second hand laptops, RAM, SSD, and processors for students, office work, and gaming in Pakistan.">
 <link rel="canonical" href="https://pkdevices.github.io/budgetdevices/">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="LaptopFinder PK 2026 — Compare Laptops in Pakistan">
-<meta property="og:description" content="Filter and compare Student, Office, and Gaming laptops in Pakistan by PKR budget and hardware specs.">
+<meta property="og:title" content="LaptopFinder PK 2026 — Compare New & Second Hand Laptops in Pakistan">
+<meta property="og:description" content="Filter and compare Student, Office, Gaming, and Second Hand laptops in Pakistan by PKR budget and hardware specs.">
 <meta property="og:url" content="https://pkdevices.github.io/budgetdevices/">
 <meta property="og:type" content="website">
 <script id="schema" type="application/ld+json"></script>
@@ -45,10 +45,12 @@ input[type=range]{width:100%;accent-color:#60a5fa}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:20px}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
 .card:hover{transform:translateY(-3px);border-color:#93c5fd}
-.card-img{position:relative;height:170px;background:#05080f}
-.card-img img{width:100%;height:100%;object-fit:cover}
-.badges{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between}
+.card-img{position:relative;height:170px;background:#0f172a}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.badges{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:6px}
 .badge{padding:4px 9px;border-radius:6px;font-size:11px;font-weight:700;background:#090d16;color:#f8fafc;border:1px solid #475569}
+.badge-used{background:#78350f;color:#fef3c7;border-color:#f59e0b}
+.badge-new{background:#064e3b;color:#d1fae5;border-color:#10b981}
 .card-body{padding:18px;display:flex;flex-direction:column;flex:1}
 .card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
 .card-top h3{font-size:17px;color:#fff}.price{font-weight:700;font-size:15px;color:#93c5fd;white-space:nowrap}
@@ -72,8 +74,8 @@ footer{text-align:center;color:#cbd5e1;font-size:13px;margin-top:48px;padding-to
   <nav aria-label="Main Navigation">
     <a href="#finder">Filter</a>
     <a href="#catalog">Catalog</a>
+    <a href="#catalog" onclick="setCond('Second Hand')">Second Hand</a>
     <a href="#catalog" onclick="setCat('Gaming')">Gaming</a>
-    <a href="#catalog" onclick="setCat('Student')">Student</a>
   </nav>
   <a href="#finder" class="btn">Configure Search</a>
 </div></header>
@@ -83,13 +85,13 @@ footer{text-align:center;color:#cbd5e1;font-size:13px;margin-top:48px;padding-to
     <div>
       <span class="tag-pill">2026 Pakistan Market Index</span>
       <h1>Precision Laptop Discovery &amp; <span>Spec Comparison.</span></h1>
-      <p>Compare verified PKR prices, processor generations, RAM, and SSD configurations across leading brands in Pakistan.</p>
+      <p>Compare verified PKR prices for brand-new and budget second-hand laptops across leading brands in Pakistan.</p>
       <div style="display:flex;gap:10px"><a href="#finder" class="btn">Start Filtering</a><a href="#catalog" class="btn btn-ghost">Browse Catalog</a></div>
     </div>
     <div class="panel">
       <h2 style="font-size:12px;color:#cbd5e1;text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px">Market Benchmark • PKR</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div class="kpi"><span>Entry Tier</span><b>Rs 85,000</b><span style="color:#86efac">Office &amp; Daily</span></div>
+        <div class="kpi"><span>Second Hand Tier</span><b>Rs 42,000</b><span style="color:#fde68a">Used Business Laptops</span></div>
         <div class="kpi"><span>Performance Tier</span><b>Rs 245,000</b><span style="color:#86efac">32GB / 1TB NVMe</span></div>
       </div>
     </div>
@@ -97,21 +99,21 @@ footer{text-align:center;color:#cbd5e1;font-size:13px;margin-top:48px;padding-to
 
   <div class="wrap">
     <div class="kpis">
-      <div class="kpi"><span>Matching Models</span><b id="count">6</b></div>
-      <div class="kpi"><span>Starting Price</span><b>Rs 85,000</b></div>
-      <div class="kpi"><span>Categories</span><b>3 Tiers</b></div>
+      <div class="kpi"><span>Matching Models</span><b id="count">9</b></div>
+      <div class="kpi"><span>Starting Price</span><b>Rs 42,000</b></div>
+      <div class="kpi"><span>Options</span><b>New &amp; Used</b></div>
       <div class="kpi"><span>Compare Limit</span><b>2 Units</b></div>
     </div>
 
     <section id="finder">
-      <h2 style="font-size:22px;margin-bottom:14px">Filter Laptops by Budget &amp; Use</h2>
+      <h2 style="font-size:22px;margin-bottom:14px">Filter Laptops by Budget &amp; Condition</h2>
       <div class="chips">
-        <button type="button" class="chip active" onclick="setCat('all',this)">All Models</button>
+        <button type="button" class="chip active" onclick="resetAll(this)">All Models</button>
+        <button type="button" class="chip" onclick="setCond('Second Hand',this)">Second Hand</button>
+        <button type="button" class="chip" onclick="setBud(50000,this)">Under 50K</button>
         <button type="button" class="chip" onclick="setCat('Gaming',this)">Gaming</button>
         <button type="button" class="chip" onclick="setCat('Student',this)">Student</button>
         <button type="button" class="chip" onclick="setCat('Office',this)">Office</button>
-        <button type="button" class="chip" onclick="setBud(100000)">Under 100K</button>
-        <button type="button" class="chip" onclick="setBud(150000)">Under 150K</button>
       </div>
       <div class="panel tools">
         <div>
@@ -120,11 +122,11 @@ footer{text-align:center;color:#cbd5e1;font-size:13px;margin-top:48px;padding-to
         </div>
         <div>
           <label for="search">Search Model or CPU</label>
-          <input type="text" id="search" placeholder="HP, Dell, Asus, i5..." onkeyup="render()">
+          <input type="text" id="search" placeholder="ThinkPad, HP, Dell, Second Hand..." onkeyup="render()">
         </div>
         <div>
           <label for="use">Primary Workload</label>
-          <select id="use" onchange="render()">
+          <select id="use" onchange="condFilter='all';render()">
             <option value="all">All Categories</option>
             <option value="Student">Student</option>
             <option value="Gaming">Gaming</option>
@@ -135,9 +137,9 @@ footer{text-align:center;color:#cbd5e1;font-size:13px;margin-top:48px;padding-to
     </section>
 
     <section id="catalog" style="margin-top:32px">
-      <h2 style="font-size:22px;margin-bottom:6px">Available Laptops in Pakistan</h2>
+      <h2 style="font-size:22px;margin-bottom:6px">Available New &amp; Second Hand Laptops in Pakistan</h2>
       <div class="grid" id="grid"></div>
-      <noscript><p>Featured laptops in Pakistan: HP Victus 15 (PKR 145,000), Dell Inspiron 15 (PKR 95,000), Lenovo IdeaPad Slim 3 (PKR 85,000), Asus ROG Strix (PKR 245,000), Acer Aspire 7 (PKR 125,000), HP Pavilion 14 (PKR 115,000).</p></noscript>
+      <noscript><p>Featured laptops in Pakistan: HP Victus 15 (PKR 145,000), Dell Latitude 5490 Second Hand (PKR 42,000), Lenovo ThinkPad T480 Second Hand (PKR 48,000), HP EliteBook 840 G3 Second Hand (PKR 43,000), Dell Inspiron 15 (PKR 95,000), Lenovo IdeaPad Slim 3 (PKR 85,000), Asus ROG Strix (PKR 245,000), Acer Aspire 7 (PKR 125,000), HP Pavilion 14 (PKR 115,000).</p></noscript>
     </section>
   </div>
 </main>
@@ -150,39 +152,46 @@ footer{text-align:center;color:#cbd5e1;font-size:13px;margin-top:48px;padding-to
   <table id="cTable"></table>
 </div>
 
-<footer>LaptopFinder Pakistan 2026 — Market pricing and hardware specifications reference.</footer>
+<footer>LaptopFinder Pakistan 2026 — New &amp; Second Hand market pricing and hardware specifications reference.</footer>
 
 <script>
+const fallbackImg="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600";
 const laptops=[
-  {name:"HP Victus 15",price:145000,ram:"16GB",ssd:"512GB",cpu:"i5 12th",use:"Gaming",brand:"HP",img:"https://images.unsplash.com/photo-1588872657576-7efd1f1555ed?w=600"},
-  {name:"Dell Inspiron 15",price:95000,ram:"8GB",ssd:"256GB",cpu:"i5 11th",use:"Student",brand:"Dell",img:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600"},
-  {name:"Lenovo IdeaPad Slim 3",price:85000,ram:"8GB",ssd:"512GB",cpu:"i3 11th",use:"Office",brand:"Lenovo",img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"},
-  {name:"Asus ROG Strix",price:245000,ram:"32GB",ssd:"1TB",cpu:"i7 13th",use:"Gaming",brand:"Asus",img:"https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"},
-  {name:"Acer Aspire 7",price:125000,ram:"16GB",ssd:"512GB",cpu:"i5 12th",use:"Student",brand:"Acer",img:"https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600"},
-  {name:"HP Pavilion 14",price:115000,ram:"8GB",ssd:"512GB",cpu:"i5 12th",use:"Office",brand:"HP",img:"https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"}
+  {name:"HP Victus 15",price:145000,ram:"16GB",ssd:"512GB",cpu:"i5 12th",use:"Gaming",brand:"HP",cond:"New",img:"https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600"},
+  {name:"Dell Latitude 5490 (Second Hand)",price:42000,ram:"8GB",ssd:"256GB",cpu:"i5 8th",use:"Student",brand:"Dell",cond:"Second Hand",img:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600"},
+  {name:"Lenovo ThinkPad T480 (Second Hand)",price:48000,ram:"8GB",ssd:"256GB",cpu:"i5 8th",use:"Office",brand:"Lenovo",cond:"Second Hand",img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"},
+  {name:"HP EliteBook 840 G3 (Second Hand)",price:43000,ram:"8GB",ssd:"256GB",cpu:"i5 6th",use:"Student",brand:"HP",cond:"Second Hand",img:"https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"},
+  {name:"Dell Inspiron 15",price:95000,ram:"8GB",ssd:"256GB",cpu:"i5 11th",use:"Student",brand:"Dell",cond:"New",img:"https://images.unsplash.com/photo-1588872657576-7efd1f1555ed?w=600"},
+  {name:"Lenovo IdeaPad Slim 3",price:85000,ram:"8GB",ssd:"512GB",cpu:"i3 11th",use:"Office",brand:"Lenovo",cond:"New",img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"},
+  {name:"Asus ROG Strix",price:245000,ram:"32GB",ssd:"1TB",cpu:"i7 13th",use:"Gaming",brand:"Asus",cond:"New",img:"https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"},
+  {name:"Acer Aspire 7",price:125000,ram:"16GB",ssd:"512GB",cpu:"i5 12th",use:"Student",brand:"Acer",cond:"New",img:"https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600"},
+  {name:"HP Pavilion 14",price:115000,ram:"8GB",ssd:"512GB",cpu:"i5 12th",use:"Office",brand:"HP",cond:"New",img:"https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600"}
 ];
-let cmp=[];
+let cmp=[],condFilter="all";
 
 document.getElementById("schema").textContent=JSON.stringify({
-  "@context":"https://schema.org","@type":"ItemList","name":"Best Laptops in Pakistan 2026",
+  "@context":"https://schema.org","@type":"ItemList","name":"Best New & Second Hand Laptops in Pakistan 2026",
   "itemListElement":laptops.map((l,i)=>({"@type":"ListItem","position":i+1,"item":{
     "@type":"Product","name":l.name,"image":l.img,"brand":{"@type":"Brand","name":l.brand},
-    "description":`${l.cpu}, ${l.ram} RAM, ${l.ssd} SSD - ${l.use} laptop in Pakistan`,
-    "offers":{"@type":"Offer","priceCurrency":"PKR","price":l.price,"availability":"https://schema.org/InStock"}
+    "description":`${l.cond} ${l.cpu}, ${l.ram} RAM, ${l.ssd} SSD - ${l.use} laptop in Pakistan`,
+    "offers":{"@type":"Offer","priceCurrency":"PKR","price":l.price,"itemCondition":l.cond=="Second Hand"?"https://schema.org/UsedCondition":"https://schema.org/NewCondition","availability":"https://schema.org/InStock"}
   }}))
 });
 
-function setCat(c,el){use.value=c;if(el){document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el.classList.add("active")}render()}
-function setBud(v){budget.value=v;render()}
+function markActive(el){if(el){document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el.classList.add("active")}}
+function resetAll(el){use.value="all";condFilter="all";budget.value=250000;search.value="";markActive(el);render()}
+function setCat(c,el){condFilter="all";use.value=c;markActive(el);render()}
+function setCond(c,el){use.value="all";condFilter=c;markActive(el);render()}
+function setBud(v,el){budget.value=v;markActive(el);render()}
 
 function render(){
   let b=+budget.value,s=search.value.toLowerCase(),u=use.value;
   bVal.innerText=b.toLocaleString();
-  let list=laptops.filter(l=>l.price<=b&&(u=="all"||l.use==u)&&(l.name+l.brand+l.cpu).toLowerCase().includes(s));
+  let list=laptops.filter(l=>l.price<=b&&(u=="all"||l.use==u)&&(condFilter=="all"||l.cond==condFilter)&&(l.name+l.brand+l.cpu+l.cond).toLowerCase().includes(s));
   count.innerText=list.length;
   grid.innerHTML=list.map(l=>{
-    let i=laptops.indexOf(l),on=cmp.includes(i);
-    return `<article class="card"><div class="card-img"><img src="${l.img}" loading="lazy" alt="${l.name} ${l.cpu} laptop"><div class="badges"><span class="badge">${l.brand}</span><span class="badge">${l.use}</span></div></div>
+    let i=laptops.indexOf(l),on=cmp.includes(i),isUsed=l.cond=="Second Hand";
+    return `<article class="card"><div class="card-img"><img src="${l.img}" loading="lazy" onerror="this.src='${fallbackImg}'" alt="${l.name} ${l.cpu} laptop"><div class="badges"><span class="badge">${l.brand} • ${l.use}</span><span class="badge ${isUsed?'badge-used':'badge-new'}">${l.cond}</span></div></div>
     <div class="card-body"><div class="card-top"><h3>${l.name}</h3><div class="price">PKR ${l.price.toLocaleString()}</div></div>
     <div class="specs"><div><span>CPU</span><b>${l.cpu}</b></div><div><span>RAM</span><b>${l.ram}</b></div><div><span>SSD</span><b>${l.ssd}</b></div></div>
     <button type="button" class="c-btn ${on?'added':''}" onclick="toggleCmp(${i})">${on?'✓ Selected':'+ Compare'}</button></div></article>`;
@@ -201,7 +210,7 @@ function updateDock(){
   cCount.innerText=cmp.length;
   if(!cmp.length)return;
   cTable.innerHTML="<tr><th>Spec</th>"+cmp.map(i=>`<th>${laptops[i].name}</th>`).join("")+"</tr>"+
-    ["price","cpu","ram","ssd","use"].map(k=>`<tr><td style="color:#cbd5e1;text-transform:uppercase">${k}</td>`+cmp.map(i=>`<td>${k=="price"?"PKR "+laptops[i][k].toLocaleString():laptops[i][k]}</td>`).join("")+"</tr>").join("");
+    ["price","cond","cpu","ram","ssd","use"].map(k=>`<tr><td style="color:#cbd5e1;text-transform:uppercase">${k=="cond"?"Condition":k}</td>`+cmp.map(i=>`<td>${k=="price"?"PKR "+laptops[i][k].toLocaleString():laptops[i][k]}</td>`).join("")+"</tr>").join("");
 }
 render();
 </script>
